@@ -1,0 +1,15 @@
+C:\INOA\Desafio-BT-INOA\stock-alert\bin\Debug\net9.0\stock-alert.exe
+C:\INOA\Desafio-BT-INOA\stock-alert\bin\Debug\net9.0\stock-alert.deps.json
+C:\INOA\Desafio-BT-INOA\stock-alert\bin\Debug\net9.0\stock-alert.runtimeconfig.json
+C:\INOA\Desafio-BT-INOA\stock-alert\bin\Debug\net9.0\stock-alert.dll
+C:\INOA\Desafio-BT-INOA\stock-alert\bin\Debug\net9.0\stock-alert.pdb
+C:\INOA\Desafio-BT-INOA\stock-alert\obj\Debug\net9.0\stock-alert.GeneratedMSBuildEditorConfig.editorconfig
+C:\INOA\Desafio-BT-INOA\stock-alert\obj\Debug\net9.0\stock-alert.AssemblyInfoInputs.cache
+C:\INOA\Desafio-BT-INOA\stock-alert\obj\Debug\net9.0\stock-alert.AssemblyInfo.cs
+C:\INOA\Desafio-BT-INOA\stock-alert\obj\Debug\net9.0\stock-alert.csproj.CoreCompileInputs.cache
+C:\INOA\Desafio-BT-INOA\stock-alert\obj\Debug\net9.0\stock-alert.sourcelink.json
+C:\INOA\Desafio-BT-INOA\stock-alert\obj\Debug\net9.0\stock-alert.dll
+C:\INOA\Desafio-BT-INOA\stock-alert\obj\Debug\net9.0\refint\stock-alert.dll
+C:\INOA\Desafio-BT-INOA\stock-alert\obj\Debug\net9.0\stock-alert.pdb
+C:\INOA\Desafio-BT-INOA\stock-alert\obj\Debug\net9.0\stock-alert.genruntimeconfig.cache
+C:\INOA\Desafio-BT-INOA\stock-alert\obj\Debug\net9.0\ref\stock-alert.dll
