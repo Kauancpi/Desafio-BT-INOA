@@ -10,6 +10,8 @@ using MailKit.Security;
 using sib_api_v3_sdk.Api;
 using sib_api_v3_sdk.Client;
 using sib_api_v3_sdk.Model;
+using DotNetEnv;
+
 
 namespace stock_alert
 {
@@ -18,8 +20,11 @@ namespace stock_alert
         //Funcao pra mandar um email
         public static void SendEmail()
         {
-            // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "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");
+            
+            var apiKeyBrevo = Environment.GetEnvironmentVariable("BREVO_API_KEY");
+
+            
+            Configuration.Default.ApiKey.Add("api-key", apiKeyBrevo);
 
             var apiInstance = new AccountApi();
 
@@ -36,8 +41,10 @@ namespace stock_alert
         }
         static async System.Threading.Tasks.Task Main()
         {
+
+            DotNetEnv.Env.Load();
             //Parte do código que recebe o preço da API
-            string token = "eoBmtRMk6mhUioq9hqrGtM";
+            string token = Environment.GetEnvironmentVariable("BRAPI_TOKEN");
             string ticker = "PETR4";
             string url = $"https://brapi.dev/api/quote/{ticker}?token={token}";
             using HttpClient client = new HttpClient();
@@ -51,6 +58,8 @@ namespace stock_alert
 
             float currentprice = float.Parse(preco,System.Globalization.CultureInfo.InvariantCulture);
 
+
+            Console.WriteLine(preco);
             SendEmail();
 
             
