@@ -20,3 +20,8 @@ C:\INOA\Desafio-BT-INOA\stock-alert\bin\Debug\net9.0\System.Security.Cryptograph
 C:\INOA\Desafio-BT-INOA\stock-alert\bin\Debug\net9.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\INOA\Desafio-BT-INOA\stock-alert\obj\Debug\net9.0\stock-alert.csproj.AssemblyReference.cache
 C:\INOA\Desafio-BT-INOA\stock-alert\obj\Debug\net9.0\stock-al.EE74CC77.Up2Date
+C:\INOA\Desafio-BT-INOA\stock-alert\bin\Debug\net9.0\FubarCoder.RestSharp.Portable.Core.dll
+C:\INOA\Desafio-BT-INOA\stock-alert\bin\Debug\net9.0\FubarCoder.RestSharp.Portable.HttpClient.dll
+C:\INOA\Desafio-BT-INOA\stock-alert\bin\Debug\net9.0\JsonSubTypes.dll
+C:\INOA\Desafio-BT-INOA\stock-alert\bin\Debug\net9.0\Newtonsoft.Json.dll
+C:\INOA\Desafio-BT-INOA\stock-alert\bin\Debug\net9.0\sib_api_v3_sdk.dll

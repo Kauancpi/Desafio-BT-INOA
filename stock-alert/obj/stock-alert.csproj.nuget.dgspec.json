@@ -47,6 +47,10 @@
             "MailKit": {
               "target": "Package",
               "version": "[4.14.1, )"
+            },
+            "sib_api_v3_sdk": {
+              "target": "Package",
+              "version": "[4.0.2, )"
             }
           },
           "imports": [
