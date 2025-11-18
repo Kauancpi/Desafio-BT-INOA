@@ -33,11 +33,11 @@ namespace stock_alert
             var username = _configuration["EmailSettings:Username"];
             var password = _configuration["EmailSettings:Password"];
             var useSsl = bool.Parse(_configuration["EmailSettings:UseSsl"]); 
-            var destinationemail = _configuration["DestinationEmail"];
+            var destinationemail = _configuration["EmailSettings:DestinationEmail"];
             
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress(senderName, senderEmail));
-            message.To.Add(new MailboxAddress("", destinationemail));
+            message.To.Add(new MailboxAddress("destino", destinationemail));
             message.Subject = "Aviso a respeito do preço da ação";
 
             if(sell == true){
@@ -141,8 +141,8 @@ namespace stock_alert
                 Console.WriteLine($"Erro: {ex.Message}");
             }
             
-            Console.WriteLine("Aguardando 5 minutos...\n");
-            await Task.Delay(TimeSpan.FromMinutes(5));
+            Console.WriteLine("Aguardando 15 minutos...\n");
+            await Task.Delay(TimeSpan.FromMinutes(15));
             
             }
 
