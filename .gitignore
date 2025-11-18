@@ -1,5 +1,5 @@
-.env
-bin/
-obj/
+**/bin/
+**/obj/
 appsettings.json
 appsettings.*.json
+**/.vscode/

@@ -19,14 +19,13 @@ namespace stock_alert
         }
 
         //Funcao pra mandar um email
-        public static async Task SendEmail(bool sell, string ticker, float currentPrice, float limitPrice)
+        public static async Task SendEmail(bool sell, string ticker, float precoLimite)
         {
             if (_configuration == null)
             {
                 throw new InvalidOperationException("Configuration not loaded");
             }
 
-        // Ler as configurações
             var smtpServer = _configuration["EmailSettings:SmtpServer"];
             var smtpPort = int.Parse(_configuration["EmailSettings:SmtpPort"]);
             var senderName = _configuration["EmailSettings:SenderName"];
@@ -36,30 +35,30 @@ namespace stock_alert
             var useSsl = bool.Parse(_configuration["EmailSettings:UseSsl"]); 
             
             
-            var mensagem = new MimeMessage();
-            mensagem.From.Add(new MailboxAddress(senderName, senderEmail));
-            mensagem.To.Add(new MailboxAddress("", "destinatario@email.com"));
-            mensagem.Subject = "Aviso a respeito do preço da ação";
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress(senderName, senderEmail));
+            message.To.Add(new MailboxAddress("", "destinatario@email.com"));
+            message.Subject = "Aviso a respeito do preço da ação";
 
             if(sell == true){
-                mensagem.Body = new TextPart("plain")
+                message.Body = new TextPart("plain")
                 {
-                Text = $"O preço da ação '{ticker}' passou de {limitPrice} R$, recomendo vender"
+                Text = $"O preço da ação '{ticker}' passou de R${precoLimite}, recomendo vender"
                 };
             }
             else
             {
-                mensagem.Body = new TextPart("plain")
+                message.Body = new TextPart("plain")
                 {
-                Text = $"O preço da ação '{ticker}' está abaixo de  {limitPrice} R$, recomendo comprar"
+                Text = $"O preço da ação '{ticker}' está abaixo de  R${precoLimite}, recomendo comprar"
                 };
             }
 
-            using var cliente = new SmtpClient();
-            await cliente.ConnectAsync(smtpServer, smtpPort, useSsl);
-            await cliente.AuthenticateAsync(username, password);
-            await cliente.SendAsync(mensagem);
-            await cliente.DisconnectAsync(true);
+            using var client = new SmtpClient();
+            await client.ConnectAsync(smtpServer, smtpPort, MailKit.Security.SecureSocketOptions.Auto);
+            await client.AuthenticateAsync(username, password);
+            await client.SendAsync(message);
+            await client.DisconnectAsync(true);
         }
 
         public static async Task<float> GetPrice(string ticker)
@@ -81,6 +80,8 @@ namespace stock_alert
 
         static async Task Main(string[] args)
         {
+            LoadConfiguration();
+            
             if (args.Length < 3)
             {
                 Console.WriteLine("Uso: stock-quote-alert.exe <TICKER> <PRECO_VENDA> <PRECO_COMPRA>");
@@ -106,6 +107,10 @@ namespace stock_alert
             Console.WriteLine($"Preço de venda: R$ {precoVenda:F2}");
             Console.WriteLine($"Preço de compra: R$ {precoCompra:F2}");
 
+            
+            while(true){
+            
+            
             try
             {
                 float precoAtual = await GetPrice(ticker);
@@ -114,11 +119,11 @@ namespace stock_alert
                 // Verificar alertas
                 if (precoAtual >= precoVenda)
                 {
-                    await SendEmail(true, ticker, precoAtual, precoVenda);
+                    await SendEmail(true, ticker, precoVenda);
                 }
                 else if (precoAtual <= precoCompra)
                 {
-                    await SendEmail(false, ticker, precoAtual, precoCompra);
+                    await SendEmail(false, ticker, precoCompra);
                 }
                 else
                 {
@@ -128,6 +133,11 @@ namespace stock_alert
             catch (Exception ex)
             {
                 Console.WriteLine($"Erro: {ex.Message}");
+            }
+            
+            Console.WriteLine("Aguardando 5 minutos...\n");
+            await Task.Delay(TimeSpan.FromMinutes(5));
+            
             }
 
              
