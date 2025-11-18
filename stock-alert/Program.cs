@@ -33,11 +33,11 @@ namespace stock_alert
             var username = _configuration["EmailSettings:Username"];
             var password = _configuration["EmailSettings:Password"];
             var useSsl = bool.Parse(_configuration["EmailSettings:UseSsl"]); 
-            
+            var destinationemail = _configuration["DestinationEmail"];
             
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress(senderName, senderEmail));
-            message.To.Add(new MailboxAddress("", "destinatario@email.com"));
+            message.To.Add(new MailboxAddress("", destinationemail));
             message.Subject = "Aviso a respeito do preço da ação";
 
             if(sell == true){
@@ -100,6 +100,12 @@ namespace stock_alert
             if (!float.TryParse(args[2], System.Globalization.CultureInfo.InvariantCulture, out float precoCompra))
             {
                 Console.WriteLine($"Erro: '{args[2]}' não é um preço válido");
+                return;
+            }
+
+            if (precoCompra > precoVenda)
+            {
+                Console.WriteLine("Erro, preço de venda tem que ser maior ou igual ao de compra, por favor coloque o maior número primeiro.");
                 return;
             }
 
