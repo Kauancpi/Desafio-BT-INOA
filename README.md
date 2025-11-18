@@ -19,3 +19,5 @@ O programa recebe um arquivo do tipo json da seguinte forma:
     "Token": "token_brapi"
   }
 }
+
+A API da brapi que estou usando atualiza o preço a cada 30 minutos, entao o codigo tem um delay de 15 min entre as requisiçoes, da pra mudar esse timing dependendo.

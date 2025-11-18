@@ -59,6 +59,8 @@ namespace stock_alert
             await client.AuthenticateAsync(username, password);
             await client.SendAsync(message);
             await client.DisconnectAsync(true);
+
+            Console.WriteLine("email enviado!");
         }
 
         public static async Task<float> GetPrice(string ticker)
